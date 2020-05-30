@@ -44,6 +44,12 @@ export const changeStateReplaceWholeObj = (obj) => {
   });
 }
 
+export const changeStateNone = () => {
+  return (state) => ({
+    ...state
+  })
+}
+
 export const changeStateReplace = (prop) => {
   return (value) => {
     return (state) => ({
