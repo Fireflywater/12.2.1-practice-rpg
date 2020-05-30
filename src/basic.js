@@ -1,3 +1,9 @@
+import $ from 'jquery';
+
+export const apiGet = (dbname) => {
+	return $.get(`DBs/${dbname}.json`);
+}
+
 export const storeState = () => {
   let currentState = {};
   return (stateChangeFunction) => {

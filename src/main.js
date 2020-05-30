@@ -1,9 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import * as State from './basic';
-
-//const setStats = State.ChangeStateReplaceArray(["str","mrx","spr","con"])([0,0,0,0]);
+import * as Basic from './basic';
 
 const constructStats = (stats) => {
   return {
@@ -31,7 +29,15 @@ const constructPlayer = (name) => {
 
 $(document).ready(function() {
 
-  const player1 = State.storeState()(State.changeStateReplaceWholeObj(constructPlayer("player1")));
+  let allCards = []; // Note: Figure out some why to eliminate this let
+  Basic.apiGet("items").then(function(response) {
+    allCards = response;
+  });
+
+  const player1 = Basic.storeState()(Basic.changeStateReplaceWholeObj(constructPlayer("player1")));
 
   console.log(player1.name, player1.hp);
+  setTimeout(() => {
+    console.log("allCards", allCards)
+  }, 1000)
 });

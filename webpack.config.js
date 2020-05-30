@@ -24,6 +24,9 @@ module.exports = {
 			template: './src/index.html',
 			inject: 'body'
 		}),
+		new CopyPlugin([
+			{from:'src/DBs', to: 'DBs'}
+		]),
 		new Dotenv()
 	],
 	module: {

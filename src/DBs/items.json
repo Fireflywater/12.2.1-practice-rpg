@@ -1,0 +1,156 @@
+[
+  {
+    "name": "No Weapon",
+    "id": "no-w",
+    "stats": [0,0,0,0],
+    "slot": 0,
+    "value": 0
+  },
+  {
+    "name": "No Top",
+    "id": "no-t",
+    "stats": [0,0,0,0],
+    "slot": 1,
+    "value": 0
+  },
+  {
+    "name": "No Bottom",
+    "id": "no-b",
+    "stats": [0,0,0,0],
+    "slot": 2,
+    "value": 0
+  },
+  {
+    "name": "No Accessory",
+    "id": "no-a",
+    "stats": [0,0,0,0],
+    "slot": 3,
+    "value": 0
+  },
+  {
+    "name": "Titanium Diboride Javelin",
+    "id": "ti2b-w",
+    "stats": [80,80,80,0],
+    "slot": 0,
+    "value": 2500
+  },
+  {
+    "name": "Titanium Diboride Chainmail Tunic",
+    "id": "ti2b-t",
+    "stats": [55,55,55,55],
+    "slot": 1,
+    "value": 2500
+  },
+  {
+    "name": "Titanium Diboride Plated Thighhighs",
+    "id": "ti2b-b",
+    "stats": [25,25,25,25],
+    "slot": 2,
+    "value": 2500
+  },
+  {
+    "name": "Titanium Diboride Reinforcements",
+    "id": "ti2b-a",
+    "stats": [19,19,19,19],
+    "slot": 3,
+    "value": 2499
+  },
+  {
+    "name": "Steel Greatsword",
+    "id": "steel-m-w",
+    "stats": [30,0,0,0],
+    "slot": 0,
+    "value": 100
+  },
+  {
+    "name": "Steel Bow and Arrows",
+    "id": "steel-f-w",
+    "stats": [0,30,0,0],
+    "slot": 0,
+    "value": 100
+  },
+  {
+    "name": "Steel Wand",
+    "id": "steel-s-w",
+    "stats": [0,0,30,0],
+    "slot": 0,
+    "value": 100
+  },
+  {
+    "name": "Steel Throwing Axe",
+    "id": "steel-mf-w",
+    "stats": [20,20,0,0],
+    "slot": 0,
+    "value": 100
+  },
+  {
+    "name": "Steel Chakram",
+    "id": "steel-fs-w",
+    "stats": [0,20,20,0],
+    "slot": 0,
+    "value": 100
+  },
+  {
+    "name": "Steel Battlestaff",
+    "id": "steel-ms-w",
+    "stats": [20,0,20,0],
+    "slot": 0,
+    "value": 100
+  },
+  {
+    "name": "Steel Javelin",
+    "id": "steel-mfs-w",
+    "stats": [15,15,15,0],
+    "slot": 0,
+    "value": 100
+  },
+  {
+    "name": "Steel Platebody",
+    "id": "steel-m-t",
+    "stats": [20,0,0,20],
+    "slot": 1,
+    "value": 100
+  },
+  {
+    "name": "Steel Platelegs",
+    "id": "steel-m-b",
+    "stats": [10,0,0,10],
+    "slot": 2,
+    "value": 100
+  },
+  {
+    "name": "Steel Studded Tunic",
+    "id": "steel-f-t",
+    "stats": [0,20,0,20],
+    "slot": 1,
+    "value": 100
+  },
+  {
+    "name": "Steel Studded Leggings",
+    "id": "steel-f-b",
+    "stats": [0,10,0,10],
+    "slot": 2,
+    "value": 100
+  },
+  {
+    "name": "Steel Woven Robe",
+    "id": "steel-s-t",
+    "stats": [0,0,20,20],
+    "slot": 1,
+    "value": 100
+  },
+  {
+    "name": "Steel Woven Boots",
+    "id": "steel-s-b",
+    "stats": [0,0,10,10],
+    "slot": 2,
+    "value": 100
+  },
+  {
+    "name": "Duelist's Necklace",
+    "id": "steel-a",
+    "stats": [10,10,10,10],
+    "slot": 3,
+    "value": 2499
+  }
+]
