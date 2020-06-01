@@ -13,7 +13,6 @@ const constructStats = (stats) => {
 }
 
 const constructPlayer = (name) => {
-  console.log("player " + name + " made");
   return {
     "name": name,
 		"hp": 100,
@@ -27,6 +26,14 @@ const constructPlayer = (name) => {
   };
 }
 
+export const findItemFromId = (db, id, i) => {
+  if (db[i].id == id) {
+    return db[i];
+  } else {
+    return findItemFromId(db, id, i+1);
+  }
+}
+
 $(document).ready(function() {
 
   let allCards = []; // Note: Figure out some why to eliminate this let
@@ -35,9 +42,4 @@ $(document).ready(function() {
   });
 
   const player1 = Basic.storeState()(Basic.changeStateReplaceWholeObj(constructPlayer("player1")));
-
-  console.log(player1.name, player1.hp);
-  setTimeout(() => {
-    console.log("allCards", allCards)
-  }, 1000)
 });

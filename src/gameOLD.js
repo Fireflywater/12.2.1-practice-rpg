@@ -11,7 +11,7 @@ export class Game {
 		console.log("game created");
 	}
 
-	populateDB() { //M means might, F means finesse, S means sorcery
+	populateDB() { // CLEAR //M means might, F means finesse, S means sorcery
 		const newItems = [
 			"No Weapon|		no-w|00,00,00,00|0|0",
 			"No Top|		no-t|00,00,00,00|1|0",
@@ -48,7 +48,7 @@ export class Game {
 		console.log("itemDB populated with " + this.itemDB.length + " items");
 	}
 
-	findItemFromId(id) {
+	findItemFromId(id) { // CLEAR
 		for (var i = 0; i < this.itemDB.length; i++) {
 			if (this.itemDB[i].id === id) {
 				return i;
@@ -100,7 +100,7 @@ export class Game {
 	}
 }
 
-class Stats {
+class Stats { // CLEAR
 	constructor(stats) {
 		this.str = parseInt(stats[0]); // Strength, melee-based
 		this.mrx = parseInt(stats[1]); // Marksman, ranged-based
@@ -110,7 +110,7 @@ class Stats {
 }
 
 class Player {
-	constructor(name) {
+	constructor(name) { // CLEAR
 		this.name = name;
 		this.hp = 100;
 		this.charStats = new Stats([0,0,0,0]);
@@ -188,7 +188,7 @@ class Player {
 	}
 }
 
-class Equip {
+class Equip { // CLEAR
 	constructor(newItem) { // "name|id|0,0,0,0|slot|price"
 		let splittedItem = newItem.split("|");
 		this.name = splittedItem[0];
