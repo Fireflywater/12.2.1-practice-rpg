@@ -34,6 +34,19 @@ export const findItemFromId = (db, id, i) => {
   }
 }
 
+const calcDamage = (atkStat, defStat, defCon) => {
+  return Math.floor(atkStat * (1-(0.0075*(defStat*(2/3)+defCon*(1/3)))));
+}
+
+const checkVictoly = (p1, p2) => {
+  const vicMessage = " wins! Return to shop to fight again.";
+  if (p1.hp <= 0) {
+    alert(p1.name + vicMessage);
+  } else if (p2.hp <= 0) {
+    alert(p2.name + vicMessage);
+  }
+}
+
 $(document).ready(function() {
 
   let allCards = []; // Note: Figure out some why to eliminate this let
