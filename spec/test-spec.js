@@ -60,4 +60,26 @@ describe("(Basic)", function() {
 
 	});
 
+	it("swap equips", function() {
+		const items = [
+			{
+				"name": "Steel Greatsword",
+				"id": "steel-m-w",
+				"stats": [30,0,0,0],
+				"slot": 0
+			},
+			{
+				"name": "Steel Bow and Arrows",
+				"id": "steel-f-w",
+				"stats": [0,30,0,0],
+				"slot": 0
+			}
+		];
+		const player = Basic.storeState(Main.constructPlayer("testPlayer"));
+		const playerPost = player(Basic.changeStateReplace("equip")(["steel-m-w","no-t","no-b","no-a"]));
+		const playerPost2 = player(Basic.changeStateReplace("inv")(["steel-f-w","no-w"]));
+		const playerPost3 = player(Main.swapEquip(items, "steel-f-w", 0));
+		expect(playerPost3.equip[0]).toEqual("steel-f-w");
+		expect(playerPost3.inv).toEqual(["steel-m-w","no-w"]);
+	});
 });

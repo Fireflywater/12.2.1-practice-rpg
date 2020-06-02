@@ -123,7 +123,7 @@ class Player {
 		console.log("player " + this.name + " made");
 	}
 
-	refresh(game) {
+	refresh(game) { // CLEAR
 		this.curAtkStats.str = this.charStats.str +
 			game.itemDB[game.findItemFromId(this.equip[0])].stats.str +
 			game.itemDB[game.findItemFromId(this.equip[3])].stats.str;

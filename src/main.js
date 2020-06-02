@@ -89,22 +89,6 @@ export const refreshPlayer = (db) => {
       state.charStats.con + 0
     ]);
 
-    //const defStats = constructStats([0,0,0,0]);
-    /*const defStats = constructStats([
-      state.equip.reduce(function(e, v) {
-        console.log("Here");
-        return findItemFromId(db, e, 0).stats[0] + v;
-      }, 0),
-      state.equip.reduce(function(e, v) {
-        return findItemFromId(db, e, 0).stats[1] + v;
-      }, 0),
-      state.equip.reduce(function(e, v) {
-        return findItemFromId(db, e, 0).stats[2] + v;
-      }, 0),
-      state.equip.reduce(function(e, v) {
-        return findItemFromId(db, e, 0).stats[3] + v;
-      }, 0)
-    ]);*/
     const defStats = constructStats([
       state.equip.reduce(function(v, e) {
         if (state.equip.indexOf(e) === 0) {
@@ -139,6 +123,22 @@ export const refreshPlayer = (db) => {
     return {...state,
       "curAtkStats": atkStats,
       "curDefStats": defStats
+    }
+  }
+}
+
+export const swapEquip = (db, invId, slot) => {
+  return (state) => {
+    const eqId = state.equip[findItemFromId(db, invId, 0).slot];
+    const process = (array, input, index) => {
+      let internalthing = array;
+      internalthing[index] = input;
+      return internalthing;
+    }
+
+    return {...state,
+      "inv": process(state.inv, eqId, slot),
+      "equip": process(state.equip, invId, findItemFromId(db, invId, 0).slot)
     }
   }
 }
