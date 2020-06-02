@@ -149,7 +149,7 @@ class Player {
 		this.curDefStats.con = equipStats[3];
 	}
 
-	swapEquip(game, invId, invSlot) {
+	swapEquip(game, invId, invSlot) { // CLEAR
 		//let retain = [this.equip[game.itemDB[game.findItemFromId(id)].slot], id, game.itemDB[game.findItemFromId(id)].slot, this.inv[game.itemDB[game.findItemFromId(id)].slot]]
 		//this.equip.splice(retain[0],1,id);
 		//this.inv.splice(id,1,retain[0]);

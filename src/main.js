@@ -143,6 +143,30 @@ export const swapEquip = (db, invId, slot) => {
   }
 }
 
+export const buyEquip = (db, id) => {
+  return (state) => {
+    if (state.money >= findItemFromId(db, id, 0).value) {
+      return {...state,
+        "inv": state.inv.concat([id]),
+        "money": state.money - findItemFromId(db, id, 0).value
+      }
+    } else {
+      return {...state}
+    }
+  }
+}
+
+/*buyEquip(game, id) {
+  if (this.money >= game.itemDB[game.findItemFromId(id)].value) {
+    this.money -= game.itemDB[game.findItemFromId(id)].value;
+    this.inv.push(id);
+    console.log("bought " + id + " for " + game.itemDB[game.findItemFromId(id)].value);
+  } else {
+    console.log("couldn't buy " + id + ", too expensive");
+  }
+  this.refresh(game);
+}*/
+
 $(document).ready(function() {
 
   let allCards = []; // Note: Figure out some why to eliminate this let

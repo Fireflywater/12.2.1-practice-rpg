@@ -63,13 +63,13 @@ describe("(Basic)", function() {
 	it("swap equips", function() {
 		const items = [
 			{
-				"name": "Steel Greatsword",
+				"name": "Test / Steel Greatsword",
 				"id": "steel-m-w",
 				"stats": [30,0,0,0],
 				"slot": 0
 			},
 			{
-				"name": "Steel Bow and Arrows",
+				"name": "Test / Steel Bow and Arrows",
 				"id": "steel-f-w",
 				"stats": [0,30,0,0],
 				"slot": 0
@@ -81,5 +81,41 @@ describe("(Basic)", function() {
 		const playerPost3 = player(Main.swapEquip(items, "steel-f-w", 0));
 		expect(playerPost3.equip[0]).toEqual("steel-f-w");
 		expect(playerPost3.inv).toEqual(["steel-m-w","no-w"]);
+	});
+
+	it("buy equips success", function() {
+		const items = [
+			{
+				"name": "Test / Steel Wand",
+				"id": "steel-s-w",
+				"stats": [0,0,30,0],
+				"slot": 0,
+				"value": 100
+			}
+		];
+		const player = Basic.storeState(Main.constructPlayer("testPlayer"));
+		const playerPost = player(Basic.changeStateReplace("money")(200));
+		const playerPost2 = player(Basic.changeStateReplace("inv")(["no-w"]));
+		const playerPost3 = player(Main.buyEquip(items, "steel-s-w"));
+		expect(playerPost3.inv.includes("steel-s-w")).toEqual(true);
+		expect(playerPost3.money).toEqual(100);
+	});
+
+	it("buy equips fail", function() {
+		const items = [
+			{
+				"name": "Test / Steel Wand",
+				"id": "steel-s-w",
+				"stats": [0,0,30,0],
+				"slot": 0,
+				"value": 100
+			}
+		];
+		const player = Basic.storeState(Main.constructPlayer("testPlayer"));
+		const playerPost = player(Basic.changeStateReplace("money")(0));
+		const playerPost2 = player(Basic.changeStateReplace("inv")(["no-w"]));
+		const playerPost3 = player(Main.buyEquip(items, "steel-s-w"));
+		expect(playerPost3.inv.includes("steel-s-w")).toEqual(false);
+		expect(playerPost3.money).toEqual(0);
 	});
 });
