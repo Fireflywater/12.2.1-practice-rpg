@@ -169,7 +169,7 @@ class Player {
 		this.refresh(game);
 	}
 
-	buyEquip(game, id) {
+	buyEquip(game, id) { // CLEAR
 		if (this.money >= game.itemDB[game.findItemFromId(id)].value) {
 			this.money -= game.itemDB[game.findItemFromId(id)].value;
 			this.inv.push(id);

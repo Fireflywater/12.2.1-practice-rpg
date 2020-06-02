@@ -156,16 +156,14 @@ export const buyEquip = (db, id) => {
   }
 }
 
-/*buyEquip(game, id) {
-  if (this.money >= game.itemDB[game.findItemFromId(id)].value) {
-    this.money -= game.itemDB[game.findItemFromId(id)].value;
-    this.inv.push(id);
-    console.log("bought " + id + " for " + game.itemDB[game.findItemFromId(id)].value);
-  } else {
-    console.log("couldn't buy " + id + ", too expensive");
+export const sellEquip = (db, id) => {
+  return (state) => {
+    return {...state,
+      "inv": state.inv.filter(e => e != id),
+      "money": state.money + findItemFromId(db, id, 0).value
+    }
   }
-  this.refresh(game);
-}*/
+}
 
 $(document).ready(function() {
 

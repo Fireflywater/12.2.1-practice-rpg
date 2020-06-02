@@ -118,4 +118,22 @@ describe("(Basic)", function() {
 		expect(playerPost3.inv.includes("steel-s-w")).toEqual(false);
 		expect(playerPost3.money).toEqual(0);
 	});
+
+	it("sell equips", function() {
+		const items = [
+			{
+				"name": "Test / Steel Wand",
+				"id": "steel-s-w",
+				"stats": [0,0,30,0],
+				"slot": 0,
+				"value": 100
+			}
+		];
+		const player = Basic.storeState(Main.constructPlayer("testPlayer"));
+		const playerPost = player(Basic.changeStateReplace("money")(0));
+		const playerPost2 = player(Basic.changeStateReplace("inv")(["steel-s-w", "no-w"]));
+		const playerPost3 = player(Main.sellEquip(items, "steel-s-w"));
+		expect(playerPost3.inv.includes("steel-s-w")).toEqual(false);
+		expect(playerPost3.money).toEqual(100);
+	});
 });
