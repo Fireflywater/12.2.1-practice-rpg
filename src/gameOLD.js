@@ -56,7 +56,7 @@ export class Game {
 		}
 	}
 
-	calcDamage(atkStat, defStat, defCon) {
+	calcDamage(atkStat, defStat, defCon) { // CLEAR
 		//let calced = Math.floor(atkStat * (0.75) * (1 - ((defStat/100)*(2/3)) + ((defCon/100)*(1/3))));
 		let calced = Math.floor(atkStat * (1-(0.0075*(defStat*(2/3)+defCon*(1/3)))))
 		console.log("Calculated damage: " + calced)
@@ -86,7 +86,7 @@ export class Game {
 		console.log(dealer + " attacked " + taker + " for " + damage + " damage, using " + type);
 	}
 
-	checkVictoly() {
+	checkVictoly() { // CLEAR
 		let victoly = "";
 		if (this.player1.hp <= 0) {
 			victoly = this.player2.name;

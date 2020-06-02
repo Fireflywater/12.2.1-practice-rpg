@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import * as Basic from './basic';
 
-const constructStats = (stats) => {
+export const constructStats = (stats) => {
   return {
     "str": stats[0],
     "mrx": stats[1],
@@ -12,7 +12,7 @@ const constructStats = (stats) => {
   };
 }
 
-const constructPlayer = (name) => {
+export const constructPlayer = (name) => {
   return {
     "name": name,
 		"hp": 100,
@@ -27,7 +27,11 @@ const constructPlayer = (name) => {
 }
 
 export const findItemFromId = (db, id, i) => {
-  if (db[i].id == id) {
+  //console.log("FIND ITEM", id, i, db[i]);
+  if ((i > db.length) || (db[i] === undefined)) {
+    console.log("Could not find item", id);
+    return "ERROR";
+  } else if (db[i].id === id) {
     return db[i];
   } else {
     return findItemFromId(db, id, i+1);
@@ -47,6 +51,98 @@ const checkVictoly = (p1, p2) => {
   }
 }
 
+/*export const refreshPlayer = (player, db) => {
+  const atkStats = constructStats([
+    player.charStats.str + findItemFromId(db, player.equip[0], 0).stats[0] + findItemFromId(db, player.equip[3], 0).stats[0],
+    player.charStats.mrx + findItemFromId(db, player.equip[0], 0).stats[1] + findItemFromId(db, player.equip[3], 0).stats[1],
+    player.charStats.spr + findItemFromId(db, player.equip[0], 0).stats[2] + findItemFromId(db, player.equip[3], 0).stats[2],
+    player.charStats.con + 0
+  ]);
+  const playerAfterAtk = player(Basic.changeStateReplace("curAtkStats")(atkStats));
+
+  const defStats = constructStats([
+    player.charStats.str + player.equip.reduce(function(e, v) {
+      return findItemFromId(db, e, 0).stats[0] + v;
+    }, 0),
+    player.charStats.mrx + player.equip.reduce(function(e, v) {
+      return findItemFromId(db, e, 0).stats[1] + v;
+    }, 0),
+    player.charStats.spr + player.equip.reduce(function(e, v) {
+      return findItemFromId(db, e, 0).stats[2] + v;
+    }, 0),
+    player.charStats.con + player.equip.reduce(function(e, v) {
+      return findItemFromId(db, e, 0).stats[3] + v;
+    }, 0)
+  ]);
+  const defStats = constructStats([0,0,0,0]);
+  const playerAfterDef = playerAfterAtk(Basic.changeStateReplace("curDefStats")(defStats));
+
+  return playerAfterDef;
+}*/
+
+export const refreshPlayer = (db) => {
+  return (state) => {
+    const atkStats = constructStats([
+      state.charStats.str + findItemFromId(db, state.equip[0], 0).stats[0] + findItemFromId(db, state.equip[3], 0).stats[0],
+      state.charStats.mrx + findItemFromId(db, state.equip[0], 0).stats[1] + findItemFromId(db, state.equip[3], 0).stats[1],
+      state.charStats.spr + findItemFromId(db, state.equip[0], 0).stats[2] + findItemFromId(db, state.equip[3], 0).stats[2],
+      state.charStats.con + 0
+    ]);
+
+    //const defStats = constructStats([0,0,0,0]);
+    /*const defStats = constructStats([
+      state.equip.reduce(function(e, v) {
+        console.log("Here");
+        return findItemFromId(db, e, 0).stats[0] + v;
+      }, 0),
+      state.equip.reduce(function(e, v) {
+        return findItemFromId(db, e, 0).stats[1] + v;
+      }, 0),
+      state.equip.reduce(function(e, v) {
+        return findItemFromId(db, e, 0).stats[2] + v;
+      }, 0),
+      state.equip.reduce(function(e, v) {
+        return findItemFromId(db, e, 0).stats[3] + v;
+      }, 0)
+    ]);*/
+    const defStats = constructStats([
+      state.equip.reduce(function(v, e) {
+        if (state.equip.indexOf(e) === 0) {
+          return v;
+        } else {
+          return findItemFromId(db, e, 0).stats[0] + v;
+        }
+      }, 0),
+      state.equip.reduce(function(v, e) {
+        if (state.equip.indexOf(e) === 0) {
+          return v;
+        } else {
+          return findItemFromId(db, e, 0).stats[1] + v;
+        }
+      }, 0),
+      state.equip.reduce(function(v, e) {
+        if (state.equip.indexOf(e) === 0) {
+          return v;
+        } else {
+          return findItemFromId(db, e, 0).stats[2] + v;
+        }
+      }, 0),
+      state.equip.reduce(function(v, e) {
+        if (state.equip.indexOf(e) === 0) {
+          return v;
+        } else {
+          return findItemFromId(db, e, 0).stats[3] + v;
+        }
+      }, 0)
+    ]);
+
+    return {...state,
+      "curAtkStats": atkStats,
+      "curDefStats": defStats
+    }
+  }
+}
+
 $(document).ready(function() {
 
   let allCards = []; // Note: Figure out some why to eliminate this let
@@ -54,5 +150,6 @@ $(document).ready(function() {
     allCards = response;
   });
 
-  const player1 = Basic.storeState()(Basic.changeStateReplaceWholeObj(constructPlayer("player1")));
+  const player1 = Basic.storeState(constructPlayer("testPlayer"));
+  //(Basic.changeStateReplaceWholeObj(constructPlayer("player1")));
 });

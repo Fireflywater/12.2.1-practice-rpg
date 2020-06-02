@@ -4,8 +4,8 @@ export const apiGet = (dbname) => {
 	return $.get(`DBs/${dbname}.json`);
 }
 
-export const storeState = () => {
-  let currentState = {};
+export const storeState = (obj) => {
+  let currentState = {...obj};
   return (stateChangeFunction) => {
     const newState = stateChangeFunction(currentState);
     currentState = {...newState};
