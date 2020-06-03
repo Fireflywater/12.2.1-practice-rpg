@@ -165,6 +165,16 @@ export const sellEquip = (db, id) => {
   }
 }
 
+export const attack = (dealer, type) => {
+  return (state) => { // taker
+    const damage = calcDamage(dealer.curAtkStats[type], state.curDefStats[type], state.curDefStats.con);
+    console.log("health", dealer.curAtkStats[type]);
+    return {...state,
+      "hp": state.hp - damage
+    }
+  }
+}
+
 $(document).ready(function() {
 
   let allCards = []; // Note: Figure out some why to eliminate this let

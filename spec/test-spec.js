@@ -136,4 +136,43 @@ describe("(Basic)", function() {
 		expect(playerPost3.inv.includes("steel-s-w")).toEqual(false);
 		expect(playerPost3.money).toEqual(100);
 	});
+
+	it("attacks correctly", function() {
+		const items = [
+			{
+				"name": "No Weapon",
+				"id": "no-w",
+				"stats": [0,0,0,0],
+				"slot": 0,
+				"value": 0
+			},
+			{
+				"name": "No Top",
+				"id": "no-t",
+				"stats": [0,0,0,0],
+				"slot": 1,
+				"value": 0
+			},
+			{
+				"name": "No Bottom",
+				"id": "no-b",
+				"stats": [0,0,0,0],
+				"slot": 2,
+				"value": 0
+			},
+			{
+				"name": "No Accessory",
+				"id": "no-a",
+				"stats": [0,0,0,0],
+				"slot": 3,
+				"value": 0
+			}
+		];
+		const player1 = Basic.storeState(Main.constructPlayer("testPlayer1"));
+		const player1Post = player1(Basic.changeStateReplace("curAtkStats")(Main.constructStats([99,99,99,0])));
+		const player2 = Basic.storeState(Main.constructPlayer("testPlayer2"));
+		const player2Post = player2(Basic.changeStateReplace("curDefStats")(Main.constructStats([0,0,0,0])));
+		const player2Ouch = player2(Main.attack(player1Post, "str"));
+		expect(player2Ouch.hp).toEqual(1);
+	});
 });

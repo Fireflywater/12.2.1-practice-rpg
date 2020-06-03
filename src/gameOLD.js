@@ -109,7 +109,7 @@ class Stats { // CLEAR
 	}
 }
 
-class Player {
+class Player { // CLEAR 
 	constructor(name) { // CLEAR
 		this.name = name;
 		this.hp = 100;
@@ -180,7 +180,7 @@ class Player {
 		this.refresh(game);
 	}
 
-	sellEquip(game, id, invSlot) {
+	sellEquip(game, id, invSlot) { // CLEAR
 		this.money += game.itemDB[game.findItemFromId(id)].value;
 		this.inv.splice(invSlot,1);
 		console.log("sold " + id + " for " + game.itemDB[game.findItemFromId(id)].value);
