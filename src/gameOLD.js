@@ -63,7 +63,7 @@ export class Game {
 		return calced;
 	}
 
-	attack(taker, type) {
+	attack(taker, type) { // CLEAR 
 		/*if (dealer === "p1") {
 			this.player2.hp -= calcDamage(this.player1.curAtkStats.str,)
 		}
@@ -109,7 +109,7 @@ class Stats { // CLEAR
 	}
 }
 
-class Player { // CLEAR 
+class Player { // CLEAR
 	constructor(name) { // CLEAR
 		this.name = name;
 		this.hp = 100;

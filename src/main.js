@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import * as Basic from './basic';
+import * as Ui from './ui';
 
 export const constructStats = (stats) => {
   return {
@@ -27,7 +28,6 @@ export const constructPlayer = (name) => {
 }
 
 export const findItemFromId = (db, id, i) => {
-  //console.log("FIND ITEM", id, i, db[i]);
   if ((i > db.length) || (db[i] === undefined)) {
     console.log("Could not find item", id);
     return "ERROR";
@@ -42,7 +42,7 @@ const calcDamage = (atkStat, defStat, defCon) => {
   return Math.floor(atkStat * (1-(0.0075*(defStat*(2/3)+defCon*(1/3)))));
 }
 
-const checkVictoly = (p1, p2) => {
+export const checkVictoly = (p1, p2) => {
   const vicMessage = " wins! Return to shop to fight again.";
   if (p1.hp <= 0) {
     alert(p1.name + vicMessage);
@@ -168,7 +168,6 @@ export const sellEquip = (db, id) => {
 export const attack = (dealer, type) => {
   return (state) => { // taker
     const damage = calcDamage(dealer.curAtkStats[type], state.curDefStats[type], state.curDefStats.con);
-    console.log("health", dealer.curAtkStats[type]);
     return {...state,
       "hp": state.hp - damage
     }
@@ -181,7 +180,15 @@ $(document).ready(function() {
   Basic.apiGet("items").then(function(response) {
     allCards = response;
   });
-
-  const player1 = Basic.storeState(constructPlayer("testPlayer"));
-  //(Basic.changeStateReplaceWholeObj(constructPlayer("player1")));
+  const actives = Basic.storeState({
+    "activePage": "shop", //"shop" or "battle"
+    "activePlayer": "p1" //"p1" or "p2"
+  });
+  const player1 = Basic.storeState(constructPlayer("testPlayer1"));
+  const player2 = Basic.storeState(constructPlayer("testPlayer2"));
+	$("#battlePage").hide();
+	$(".p2Actions").hide();
+  setTimeout(function() {
+    Ui.refreshUI(allCards, player1, player2);
+  }, 1000);
 });
